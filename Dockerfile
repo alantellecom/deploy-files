@@ -1,4 +1,4 @@
-FROM ruby:2.6-alpine
+FROM ruby:2.7.1-alpine
 
 ENV RAILS_ENV production
 ENV SECRET_KEY_BASE 123456789
