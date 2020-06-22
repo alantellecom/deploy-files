@@ -4,22 +4,16 @@ ENV RAILS_ENV production
 ENV SECRET_KEY_BASE 123456789
 
 # Install important dependencies
-RUN apk add build-base nodejs yarn tzdata sqlite-dev postgresql-client postgresql-dev python git --no-cache bash
+RUN apk add build-base nodejs yarn tzdata sqlite-dev postgresql-client postgresql-dev git --no-cache bash
 
-RUN gem install bundler -v 1.16.1
+RUN gem install bundler
 RUN gem install rails -v '5.2.3'
 
-RUN mkdir -p /myapp
-RUN chmod -R 777 /myapp
-WORKDIR /myapp
-
-COPY Gemfile* /myapp/
+RUN mkdir /webapp
+WORKDIR /webapp
+COPY . .
 
 RUN bundle install
-
-COPY . /myapp/
-
-RUN chmod -R 777 /myapp
 
 ENTRYPOINT ["./lib/entrypoint.sh"]
 
