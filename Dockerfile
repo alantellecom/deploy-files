@@ -12,6 +12,7 @@ RUN gem install rails -v '5.2.3'
 RUN mkdir /webapp
 WORKDIR /webapp
 COPY . .
+RUN chmod -R 777 .
 
 RUN bundle install
 
